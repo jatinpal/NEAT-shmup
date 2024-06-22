@@ -226,10 +226,14 @@ config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          'config')
 
-genomeFile = 'D:/NEAT/Shmup/bestGenomes/model12206.sav'
+model_name="model12206.sav"
+genomeFile = 'C:/Users/jatin/Downloads/Application-of-NEAT-in-gameplay-master/bestGenomes/'+model_name
+print("Using pre-trained model : {}".format(model_name))
 genome = pickle.load(open(genomeFile,'rb'))
 net = neat.nn.FeedForwardNetwork.create(genome, config)
+print("Initializing Feed Forward Network...")
 for i in range(5):
+    print("Begin Round {}".format(i+1))
     fitness = game(net)
-    print('Fitness is %f'% fitness)
+    print('Score for this round is %f'% fitness)
 pygame.quit()
